@@ -27,7 +27,7 @@ export default memo(function UnderstandingLevel({
   return (
     <View className="flex-row items-center gap-1.5">
       <Text className="font-medium text-xs text-slate-400">이해도:</Text>
-      {LEVELS.map((level) => {
+      {LEVELS.map(level => {
         const isActive = level === current;
         const colors = LEVEL_COLORS[level];
         return (

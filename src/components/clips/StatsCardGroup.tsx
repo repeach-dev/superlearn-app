@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import StatsCard from "./StatsCard";
-import { ClipStats } from "../../types/clip";
+import { ClipStats } from "@/types/clip";
 
 interface StatsCardGroupProps {
   stats: ClipStats;

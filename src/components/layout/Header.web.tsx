@@ -1,11 +1,6 @@
 import { View, Text, Pressable, Image, StyleProp, ViewStyle } from "react-native";
 import { Link, usePathname } from "expo-router";
-import {
-  MoonIcon,
-  SettingsIcon,
-  UserIcon,
-  McBellRingingLineIcon,
-} from "@/components/icons";
+import { MoonIcon, SettingsIcon, UserIcon, McBellRingingLineIcon } from "@/components/icons";
 import { isElectron } from "@/utils/platform";
 import { NAV_ITEMS, ICON, LOGO } from "@/constants/header";
 import {
@@ -42,11 +37,7 @@ export default function Header() {
             accessibilityRole="link"
             aria-label="홈으로 이동"
           >
-            <Image
-              source={require("@assets/logo.png")}
-              style={LOGO[P]}
-              resizeMode="contain"
-            />
+            <Image source={require("@assets/logo.png")} style={LOGO[P]} resizeMode="contain" />
           </Pressable>
         </Link>
 
@@ -61,9 +52,7 @@ export default function Header() {
                   accessibilityRole="link"
                   aria-label={label}
                 >
-                  <Text className={navText({ active: isActive, platform: P })}>
-                    {label}
-                  </Text>
+                  <Text className={navText({ active: isActive, platform: P })}>{label}</Text>
                 </Pressable>
               </Link>
             );
@@ -78,11 +67,7 @@ export default function Header() {
           className={iconButton({ platform: P })}
           style={{ borderCurve: "continuous" }}
         >
-          <MoonIcon
-            width={ICON.size[P]}
-            height={ICON.size[P]}
-            color={ICON.color}
-          />
+          <MoonIcon width={ICON.size[P]} height={ICON.size[P]} color={ICON.color} />
         </Pressable>
 
         <Pressable
@@ -91,16 +76,9 @@ export default function Header() {
           className={iconButton({ platform: P })}
           style={{ borderCurve: "continuous" }}
         >
-          <McBellRingingLineIcon
-            width={ICON.size[P]}
-            height={ICON.size[P]}
-            color={ICON.color}
-          />
+          <McBellRingingLineIcon width={ICON.size[P]} height={ICON.size[P]} color={ICON.color} />
           <View className={badge({ platform: P })}>
-            <Text
-              className={badgeText({ platform: P })}
-              style={{ fontVariant: ["tabular-nums"] }}
-            >
+            <Text className={badgeText({ platform: P })} style={{ fontVariant: ["tabular-nums"] }}>
               2
             </Text>
           </View>
@@ -112,11 +90,7 @@ export default function Header() {
           className={iconButton({ platform: P })}
           style={{ borderCurve: "continuous" }}
         >
-          <SettingsIcon
-            width={ICON.size[P]}
-            height={ICON.size[P]}
-            color={ICON.color}
-          />
+          <SettingsIcon width={ICON.size[P]} height={ICON.size[P]} color={ICON.color} />
         </Pressable>
 
         <Pressable
@@ -125,18 +99,10 @@ export default function Header() {
           className={profileButton({ platform: P })}
           style={{ borderCurve: "continuous" }}
         >
-          <UserIcon
-            width={ICON.size[P]}
-            height={ICON.size[P]}
-            color={ICON.color}
-          />
+          <UserIcon width={ICON.size[P]} height={ICON.size[P]} color={ICON.color} />
         </Pressable>
 
-        <Pressable
-          accessibilityRole="button"
-          aria-label="로그아웃"
-          className="ml-2 pl-2"
-        >
+        <Pressable accessibilityRole="button" aria-label="로그아웃" className="ml-2 pl-2">
           <Text className={logoutText({ platform: P })}>로그아웃</Text>
         </Pressable>
       </View>

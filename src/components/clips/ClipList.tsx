@@ -10,7 +10,7 @@ export default function ClipList({ clips }: ClipListProps) {
   return (
     <FlatList
       data={clips}
-      keyExtractor={(item) => item.id}
+      keyExtractor={item => item.id}
       renderItem={({ item }) => (
         <ClipItem
           title={item.title}

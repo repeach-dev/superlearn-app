@@ -11,10 +11,10 @@ const isWeb = Platform.OS === "web";
 
 const stats: ClipStats = {
   total: MOCK_CLIPS.length,
-  fullyUnderstood: MOCK_CLIPS.filter((c) => c.understanding === "완전 이해")
+  fullyUnderstood: MOCK_CLIPS.filter(c => c.understanding === "완전 이해")
     .length,
-  normal: MOCK_CLIPS.filter((c) => c.understanding === "보통").length,
-  notUnderstood: MOCK_CLIPS.filter((c) => c.understanding === "이해 안됨")
+  normal: MOCK_CLIPS.filter(c => c.understanding === "보통").length,
+  notUnderstood: MOCK_CLIPS.filter(c => c.understanding === "이해 안됨")
     .length,
 };
 
@@ -24,7 +24,7 @@ export default function MyClipsScreen() {
   const filteredClips =
     activeFilter === "전체"
       ? MOCK_CLIPS
-      : MOCK_CLIPS.filter((c) => c.understanding === activeFilter);
+      : MOCK_CLIPS.filter(c => c.understanding === activeFilter);
 
   return (
     <View className="flex-1 bg-slate-50">

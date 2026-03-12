@@ -15,7 +15,7 @@ export default function FilterTabs({
   return (
     <View className="flex-row items-center gap-2">
       <Text className="font-medium text-sm text-slate-500">필터:</Text>
-      {FILTERS.map((filter) => {
+      {FILTERS.map(filter => {
         const isActive = filter === activeFilter;
         return (
           <Pressable
