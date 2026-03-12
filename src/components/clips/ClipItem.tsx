@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native';
-import { memo } from 'react';
-import UnderstandingLevel from './UnderstandingLevel';
-import { UnderstandingStatus } from '../../types/clip';
+import { View, Text } from "react-native";
+import { memo } from "react";
+import UnderstandingLevel from "./UnderstandingLevel";
+import { UnderstandingStatus } from "../../types/clip";
 
 interface ClipItemProps {
   title: string;
@@ -22,28 +22,40 @@ export default memo(function ClipItem({
 }: ClipItemProps) {
   return (
     <View
-      className="flex-row bg-white rounded-2xl p-5 gap-4"
-      style={{ borderCurve: 'continuous', boxShadow: '0 4px 12px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)' }}
+      className="flex-row gap-4 rounded-2xl bg-white p-5"
+      style={{
+        borderCurve: "continuous",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02)",
+      }}
     >
       {/* Thumbnail placeholder with duration badge */}
-      <View className="w-40 h-24 bg-slate-100 rounded-xl overflow-hidden" style={{ borderCurve: 'continuous' }}>
+      <View
+        className="h-24 w-40 overflow-hidden rounded-xl bg-slate-100"
+        style={{ borderCurve: "continuous" }}
+      >
         <View className="flex-1 items-center justify-center">
-          <Text className="text-gray-400 text-3xl">▶</Text>
+          <Text className="text-3xl text-gray-400">▶</Text>
         </View>
         {/* Duration badge - bottom right */}
-        <View className="absolute bottom-1.5 right-1.5 bg-black/70 rounded px-1.5 py-0.5" style={{ borderCurve: 'continuous' }}>
-          <Text className="text-white text-[10px] font-semibold" style={{ fontVariant: ['tabular-nums'] }}>
+        <View
+          className="absolute bottom-1.5 right-1.5 rounded bg-black/70 px-1.5 py-0.5"
+          style={{ borderCurve: "continuous" }}
+        >
+          <Text
+            className="font-semibold text-[10px] text-white"
+            style={{ fontVariant: ["tabular-nums"] }}
+          >
             {duration}
           </Text>
         </View>
       </View>
 
       {/* Info */}
-      <View className="flex-1 gap-2 justify-center">
-        <Text className="text-lg font-bold text-slate-800" numberOfLines={1}>
+      <View className="flex-1 justify-center gap-2">
+        <Text className="font-bold text-lg text-slate-800" numberOfLines={1}>
           {title}
         </Text>
-        <Text className="text-xs font-medium text-slate-500" numberOfLines={1}>
+        <Text className="font-medium text-xs text-slate-500" numberOfLines={1}>
           {source} · {timeRange}
         </Text>
         <UnderstandingLevel current={understanding} />
@@ -51,7 +63,10 @@ export default memo(function ClipItem({
 
       {/* Date */}
       <View className="justify-center">
-        <Text className="text-xs font-medium text-slate-400" style={{ fontVariant: ['tabular-nums'] }}>
+        <Text
+          className="font-medium text-xs text-slate-400"
+          style={{ fontVariant: ["tabular-nums"] }}
+        >
           {createdAt}
         </Text>
       </View>

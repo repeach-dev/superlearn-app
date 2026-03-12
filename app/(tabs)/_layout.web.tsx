@@ -1,7 +1,7 @@
-import { Slot } from 'expo-router';
-import { View } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Header from '../../src/components/layout/Header';
+import { Slot } from "expo-router";
+import { View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import Header from "../../src/components/layout/Header";
 
 export default function TabsLayout() {
   return (

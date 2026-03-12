@@ -1,4 +1,4 @@
-import { FilterType } from '../../types/clip';
+import { FilterType } from "../../types/clip";
 
 type Props = {
   activeFilter: FilterType;

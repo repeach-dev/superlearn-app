@@ -1,8 +1,8 @@
-import { View } from 'react-native';
-import FilterTabs from './FilterTabs';
-import SortDropdown from './SortDropdown';
-import PlayAllButton from './PlayAllButton';
-import { FilterType } from '../../types/clip';
+import { View } from "react-native";
+import FilterTabs from "./FilterTabs";
+import SortDropdown from "./SortDropdown";
+import PlayAllButton from "./PlayAllButton";
+import { FilterType } from "../../types/clip";
 
 type Props = {
   activeFilter: FilterType;

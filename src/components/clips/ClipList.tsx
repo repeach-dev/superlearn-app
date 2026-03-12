@@ -1,6 +1,6 @@
-import { FlatList, View } from 'react-native';
-import ClipItem from './ClipItem';
-import { Clip } from '../../types/clip';
+import { FlatList, View } from "react-native";
+import ClipItem from "./ClipItem";
+import { Clip } from "../../types/clip";
 
 interface ClipListProps {
   clips: Clip[];
