@@ -28,6 +28,10 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
-    }
+    },
+    "scheme": "superlearn",
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

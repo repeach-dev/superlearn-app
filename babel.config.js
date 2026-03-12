@@ -5,6 +5,9 @@ module.exports = function (api) {
             'babel-preset-expo',
             'nativewind/babel',
         ],
-        plugins: ['react-native-reanimated/plugin'],
+        plugins: [
+            ['module-resolver', { alias: { '@': './src', '@assets': './assets' } }],
+            'react-native-reanimated/plugin',
+        ],
     };
 };
