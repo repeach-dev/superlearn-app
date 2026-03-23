@@ -1,8 +1,9 @@
-import { View, Text, Pressable, Image, StyleProp, ViewStyle } from "react-native";
+import { View, Text, Pressable, Image, StyleProp, ViewStyle, Button } from "react-native";
 import { Link, usePathname } from "expo-router";
 import { MoonIcon, SettingsIcon, UserIcon, McBellRingingLineIcon } from "@/components/icons";
 import { isElectron } from "@/utils/platform";
 import { NAV_ITEMS, ICON, LOGO } from "@/constants/header";
+import axios from "@/api/default-client";
 import {
   headerContainer,
   headerLeftGroup,
@@ -16,6 +17,8 @@ import {
   badgeText,
   logoutText,
 } from "@/styles/header.variants";
+import { useAuthStore } from "@/stores/auth-store";
+
 
 const P = isElectron ? "electron" : "web";
 const dragStyle = isElectron
@@ -27,6 +30,20 @@ const noDragStyle = isElectron
 
 export default function Header() {
   const pathname = usePathname();
+  const { setAccessToken } = useAuthStore();
+  // const apitest = async () => {
+  //       try {
+  //     const response = await axios.post(`/auth/student-login`, {
+  //       email: "repeach_demo",
+  //       password: "123123123",
+  //     });
+  //     console.log(response)
+  //     // setAccessToken(response.data.access_token);
+  //     // window.location.href = '/';
+  //   } catch (error) {
+  //     alert('err')
+  //   }
+  // }
 
   return (
     <View className={headerContainer({ platform: P })} style={dragStyle}>
@@ -105,6 +122,9 @@ export default function Header() {
         <Pressable accessibilityRole="button" aria-label="로그아웃" className="ml-2 pl-2">
           <Text className={logoutText({ platform: P })}>로그아웃</Text>
         </Pressable>
+      </View>
+      <View>
+        <Button title="test" onPress={() => { }} />
       </View>
     </View>
   );
