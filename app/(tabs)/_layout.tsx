@@ -1,10 +1,13 @@
+import Header from "@/components/layout/Header";
 import { Tabs } from "expo-router";
 import { Text } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabsLayout() {
   return (
     <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+      <Header/>
       <Tabs
         screenOptions={{
           headerShown: true,
@@ -72,6 +75,7 @@ export default function TabsLayout() {
           }}
         />
       </Tabs>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }

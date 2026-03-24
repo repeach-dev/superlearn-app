@@ -18,6 +18,7 @@ import {
   logoutText,
 } from "@/styles/header.variants";
 import { useAuthStore } from "@/stores/auth-store";
+import { useStudentLoginMutation } from "@/queries/auth/auth.query";
 
 
 const P = isElectron ? "electron" : "web";
@@ -31,19 +32,27 @@ const noDragStyle = isElectron
 export default function Header() {
   const pathname = usePathname();
   const { setAccessToken } = useAuthStore();
-  // const apitest = async () => {
-  //       try {
-  //     const response = await axios.post(`/auth/student-login`, {
-  //       email: "repeach_demo",
-  //       password: "123123123",
-  //     });
-  //     console.log(response)
-  //     // setAccessToken(response.data.access_token);
-  //     // window.location.href = '/';
-  //   } catch (error) {
-  //     alert('err')
-  //   }
-  // }
+  const { mutateAsync: studentLogin } = useStudentLoginMutation();
+  const apitest = async () => {
+        try {
+      const response = await studentLogin({
+        email: "repeach_demo",
+        password: "123123123",
+      },{
+        onSuccess: (data) => {
+            console.log("data: ", data)
+        },
+        onError: (error) => {
+            console.log("error: ", error)
+        }
+      });
+      // setAccessToken(response.data.access_token);
+      // window.location.href = '/';
+    } catch (error) {
+       console.log('err: ', error)
+      alert('err')
+    }
+  }
 
   return (
     <View className={headerContainer({ platform: P })} style={dragStyle}>
@@ -123,8 +132,8 @@ export default function Header() {
           <Text className={logoutText({ platform: P })}>로그아웃</Text>
         </Pressable>
       </View>
-      <View>
-        <Button title="test" onPress={() => { }} />
+      <View style={noDragStyle}>
+        <Button title="test" onPress={apitest} />
       </View>
     </View>
   );

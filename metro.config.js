@@ -13,6 +13,8 @@ config.resolver = {
     ...resolver,
     assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
     sourceExts: [...resolver.sourceExts, "svg"],
+    unstable_enablePackageExports: true,
+    unstable_conditionNames: ["require", "react-native", "default"],
 };
 
 module.exports = withNativeWind(config, { input: "./global.css" });

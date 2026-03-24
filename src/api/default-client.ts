@@ -3,7 +3,7 @@ import { useAuthStore } from "@/stores/auth-store";
 import { hasGraphQLError } from "@/hooks/use-graphql-hooks";
 
 
-const baseURL: string = `/api/v1`;
+const baseURL = process.env.EXPO_PUBLIC_API_URL + "/api/v1";
 
 const DefaultClient = axios.create({
   baseURL,
@@ -58,7 +58,7 @@ DefaultClient.interceptors.response.use(
 export default DefaultClient;
 
 export const postGraphql = async (body: { query: string; variables?: any }) => {
-  return await DefaultClient.post(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/graphql`, body, {
+  return await DefaultClient.post(`${process.env.EXPO_PUBLIC_API_URL}/graphql`, body, {
     headers: {
       "Content-Type": "application/json",
     },
