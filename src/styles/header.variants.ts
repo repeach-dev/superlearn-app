@@ -6,7 +6,7 @@ export const headerContainer = tv({
   base: "z-10 flex-row items-center justify-between border-b border-slate-200 bg-white",
   variants: {
     platform: {
-      web: "px-6 py-4",
+      web: "px-4 py-3 lg:px-6 lg:py-4",
       electron: "h-[38px] pl-20 pr-6",
     },
   },
@@ -17,7 +17,7 @@ export const headerLeftGroup = tv({
   base: "flex-row items-center",
   variants: {
     platform: {
-      web: "gap-8",
+      web: "gap-4 lg:gap-8",
       electron: "gap-4",
     },
   },
@@ -28,7 +28,7 @@ export const navGroup = tv({
   base: "flex-row",
   variants: {
     platform: {
-      web: "ml-4 gap-2",
+      web: "ml-4 hidden gap-2 lg:flex",
       electron: "gap-1",
     },
   },
@@ -39,7 +39,7 @@ export const iconGroup = tv({
   base: "flex-row items-center",
   variants: {
     platform: {
-      web: "gap-3",
+      web: "gap-2 lg:gap-3",
       electron: "gap-1.5",
     },
   },
@@ -50,7 +50,7 @@ export const profileButton = tv({
   base: "items-center justify-center bg-slate-50",
   variants: {
     platform: {
-      web: "ml-1 size-10 rounded-2xl",
+      web: "ml-0.5 size-9 rounded-xl lg:ml-1 lg:size-10 lg:rounded-2xl",
       electron: "ml-0.5 size-6",
     },
   },
@@ -63,7 +63,7 @@ export const breadcrumbContainer = tv({
   base: "w-full flex-row items-center border-b border-slate-100 bg-slate-50",
   variants: {
     platform: {
-      web: "gap-2 px-6 py-2.5",
+      web: "gap-2 px-4 py-2 lg:px-6 lg:py-2.5",
       electron: "z-20 gap-1.5 px-6 py-1.5",
     },
   },
@@ -85,7 +85,7 @@ export const breadcrumbText = tv({
   base: "font-medium text-slate-400",
   variants: {
     platform: {
-      web: "text-sm",
+      web: "text-xs lg:text-sm",
       electron: "text-xs",
     },
   },
@@ -96,7 +96,7 @@ export const breadcrumbSeparator = tv({
   base: "text-slate-300",
   variants: {
     platform: {
-      web: "text-sm",
+      web: "text-xs lg:text-sm",
       electron: "text-xs",
     },
   },
@@ -107,7 +107,7 @@ export const breadcrumbCurrent = tv({
   base: "font-semibold text-slate-700",
   variants: {
     platform: {
-      web: "text-sm",
+      web: "text-xs lg:text-sm",
       electron: "text-xs",
     },
   },
@@ -155,7 +155,7 @@ export const iconButton = tv({
   base: "items-center justify-center",
   variants: {
     platform: {
-      web: "size-10 rounded-2xl bg-slate-50",
+      web: "size-9 rounded-xl bg-slate-50 lg:size-10 lg:rounded-2xl",
       electron: "size-6",
     },
   },
@@ -194,7 +194,7 @@ export const logoutText = tv({
   base: "font-semibold text-slate-500",
   variants: {
     platform: {
-      web: "text-sm",
+      web: "text-xs lg:text-sm",
       electron: "text-xs",
     },
   },

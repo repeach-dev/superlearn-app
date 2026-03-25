@@ -46,32 +46,33 @@ export default function LoginPage() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-[#090909]">
+    <View className="flex-1 items-center justify-center bg-[#090909] px-4 sm:px-6">
       {/* 로고 + 부제 */}
-      <View className="mb-10 items-center gap-3">
-        <View className="flex-row items-center gap-5">
+      <View className="mb-8 items-center gap-3 lg:mb-10">
+        <View className="flex-row items-center gap-3 lg:gap-5">
           <Image
             source={require("@assets/favicon.png")}
-            style={{ width: 39, height: 47 }}
+            style={{ width: 32, height: 39 }}
+            className="lg:h-[47px] lg:w-[39px]"
             resizeMode="contain"
           />
           <Text
             style={{ fontFamily: "Montserrat-SemiBold" }}
-            className="text-[40px] tracking-tight text-[#ff3d3d]"
+            className="text-[28px] tracking-tight text-[#ff3d3d] lg:text-[40px]"
           >
             Super Learn
           </Text>
         </View>
-        <Text className="font-sans text-[20px] text-[#b7b7b7]">
+        <Text className="font-sans text-[16px] text-[#b7b7b7] lg:text-[20px]">
           AI 기반 차세대 학습 플랫폼
         </Text>
       </View>
 
       {/* 로그인 카드 */}
-      <View className="w-[472px] rounded-xl bg-[#222] p-10">
-        <View className="items-center gap-7">
+      <View className="w-full max-w-[472px] rounded-xl bg-[#222] p-6 lg:p-10">
+        <View className="items-center gap-5 lg:gap-7">
           {/* 제목 */}
-          <Text className="font-bold text-[22px] text-white">로그인</Text>
+          <Text className="font-bold text-[20px] text-white lg:text-[22px]">로그인</Text>
 
           {/* 입력 영역 */}
           <View className="w-full gap-1">
