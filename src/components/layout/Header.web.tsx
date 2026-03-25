@@ -19,6 +19,7 @@ import {
 } from "@/styles/header.variants";
 import { useAuthStore } from "@/stores/auth-store";
 import { useStudentLoginMutation } from "@/queries/auth/auth.query";
+import { useAuthHooks } from "@/hooks/use-auth-hooks";
 
 
 const P = isElectron ? "electron" : "web";
@@ -31,28 +32,7 @@ const noDragStyle = isElectron
 
 export default function Header() {
   const pathname = usePathname();
-  const { setAccessToken } = useAuthStore();
-  const { mutateAsync: studentLogin } = useStudentLoginMutation();
-  const apitest = async () => {
-        try {
-      const response = await studentLogin({
-        email: "repeach_demo",
-        password: "123123123",
-      },{
-        onSuccess: (data) => {
-            console.log("data: ", data)
-        },
-        onError: (error) => {
-            console.log("error: ", error)
-        }
-      });
-      // setAccessToken(response.data.access_token);
-      // window.location.href = '/';
-    } catch (error) {
-       console.log('err: ', error)
-      alert('err')
-    }
-  }
+  const { authLogout } = useAuthHooks();
 
   return (
     <View className={headerContainer({ platform: P })} style={dragStyle}>
@@ -129,11 +109,8 @@ export default function Header() {
         </Pressable>
 
         <Pressable accessibilityRole="button" aria-label="로그아웃" className="ml-2 pl-2">
-          <Text className={logoutText({ platform: P })}>로그아웃</Text>
+          <Text className={logoutText({ platform: P })} onPress={authLogout}>로그아웃</Text>
         </Pressable>
-      </View>
-      <View style={noDragStyle}>
-        <Button title="test" onPress={apitest} />
       </View>
     </View>
   );

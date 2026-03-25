@@ -1,11 +1,11 @@
 import { View, Text, Platform } from "react-native";
 import { useState } from "react";
-import Breadcrumb from "../components/layout/Breadcrumb";
-import StatsCardGroup from "../components/clips/StatsCardGroup";
-import ClipFilterBar from "../components/clips/ClipFilterBar";
-import ClipList from "../components/clips/ClipList";
-import { MOCK_CLIPS } from "../data/mockClips";
-import { ClipStats, FilterType } from "../types/clip";
+import Breadcrumb from "@/components/layout/Breadcrumb";
+import StatsCardGroup from "./StatsCardGroup";
+import ClipFilterBar from "./ClipFilterBar";
+import ClipList from "./ClipList";
+import { MOCK_CLIPS } from "@/data/mockClips";
+import { ClipStats, FilterType } from "@/types/clip";
 
 const isWeb = Platform.OS === "web";
 

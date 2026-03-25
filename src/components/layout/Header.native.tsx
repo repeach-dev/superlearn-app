@@ -1,6 +1,7 @@
 import { View, Text, Button } from "react-native";
 import axios from "@/api/default-client";
 import { useStudentLoginMutation } from "@/queries/auth/auth.query";
+import { Link } from "expo-router";
 
 export default function Header() {
   const { mutateAsync: studentLogin } = useStudentLoginMutation();
@@ -27,7 +28,6 @@ export default function Header() {
   return (
     <View className="items-center border-b border-slate-200 bg-white px-4 py-3">
       <Text className="font-bold text-lg text-orange-500">Super Learn</Text>
-      <Button title="test" onPress={apitest} />
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import Breadcrumb from "../../src/components/layout/Breadcrumb";
+import Breadcrumb from "@/components/layout/Breadcrumb";
 
 export default function ClassroomPage() {
   return (
