@@ -55,6 +55,9 @@ export default function PlayerPage({ id }: PlayerPageProps) {
 
   const isSidebarMode = width >= 1024;
 
+  // 큰 화면: 자막 항상 표시 / 작은 화면: 자막 탭 선택 시만 표시
+  const subtitleVisible = isSidebarMode || activeTab === "subtitle";
+
   // 작은 화면 → 큰 화면 전환 시, 자막 탭이면 강의목록으로 전환
   const effectiveTab =
     isSidebarMode && activeTab === "subtitle" ? "curriculum" : activeTab;
@@ -109,12 +112,8 @@ export default function PlayerPage({ id }: PlayerPageProps) {
   const renderTabContent = () => {
     switch (effectiveTab) {
       case "subtitle":
-        return (
-          <SubtitleList
-            sections={MOCK_SUBTITLE_SECTIONS}
-            currentTime={currentTime}
-          />
-        );
+        // SubtitleList는 ScrollView 내에서 display 토글로 관리됨
+        return null;
       case "curriculum":
         return <CurriculumTab lectures={MOCK_LECTURES} />;
       case "note":
@@ -196,18 +195,20 @@ export default function PlayerPage({ id }: PlayerPageProps) {
 
           <PlayerInfo />
 
-          {/* 큰 화면: 자막을 여기에 표시 */}
-          {isSidebarMode && (
+          {/* 작은 화면: 사이드바(자막 탭 포함)를 아래에 표시 */}
+          {!isSidebarMode && (
+            <View style={subtitleVisible ? undefined : { minHeight: 400 }}>
+              {sidebarPanel}
+            </View>
+          )}
+
+          {/* 자막 — 항상 렌더링, display로 토글하여 언마운트 방지 */}
+          <View style={{ display: subtitleVisible ? "flex" : "none" }}>
             <SubtitleList
               sections={MOCK_SUBTITLE_SECTIONS}
               currentTime={currentTime}
             />
-          )}
-
-          {/* 작은 화면: 사이드바(자막 탭 포함)를 아래에 표시 */}
-          {!isSidebarMode && (
-            <View className="min-h-[400px]">{sidebarPanel}</View>
-          )}
+          </View>
         </ScrollView>
 
         {/* 넓은 화면: 리사이저 + 사이드바 */}

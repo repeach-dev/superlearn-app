@@ -22,38 +22,6 @@ export interface QnAItem {
   };
 }
 
-export interface CCItem {
-  id: string;
-  /** 시작 시간 (초) */
-  startTime: number;
-  /** 종료 시간 (초) */
-  endTime: number;
-  text: string;
-}
-
-export const MOCK_CC_DATA: CCItem[] = [
-  { id: "cc1", startTime: 0, endTime: 3.5, text: "안녕하세요 여러분" },
-  { id: "cc2", startTime: 3.5, endTime: 7.2, text: "오늘 배울 내용은 명제의 정의입니다" },
-  { id: "cc3", startTime: 7.2, endTime: 11.0, text: "명제란 참 또는 거짓을 판별할 수 있는 문장입니다" },
-  { id: "cc4", startTime: 11.0, endTime: 15.5, text: "예를 들어 '2는 짝수이다'는 참인 명제입니다" },
-  { id: "cc5", startTime: 15.5, endTime: 19.0, text: "'3은 짝수이다'는 거짓인 명제가 되겠죠" },
-  { id: "cc6", startTime: 19.0, endTime: 23.5, text: "하지만 '이 꽃은 아름답다'는 명제가 아닙니다" },
-  { id: "cc7", startTime: 23.5, endTime: 27.0, text: "왜냐하면 참 거짓을 객관적으로 판별할 수 없기 때문이에요" },
-  { id: "cc8", startTime: 27.0, endTime: 31.5, text: "이런 문장을 우리는 '열린 문장'이라고 합니다" },
-  { id: "cc9", startTime: 31.5, endTime: 36.0, text: "자 그러면 명제의 부정에 대해 알아볼까요" },
-  { id: "cc10", startTime: 36.0, endTime: 40.5, text: "명제 p의 부정은 ~p로 표기합니다" },
-  { id: "cc11", startTime: 40.5, endTime: 45.0, text: "p가 참이면 ~p는 거짓이 되고" },
-  { id: "cc12", startTime: 45.0, endTime: 49.5, text: "p가 거짓이면 ~p는 참이 됩니다" },
-  { id: "cc13", startTime: 49.5, endTime: 54.0, text: "이것을 진리표로 나타내면 더 명확하게 볼 수 있어요" },
-  { id: "cc14", startTime: 54.0, endTime: 58.5, text: "다음으로 조건문에 대해 설명하겠습니다" },
-  { id: "cc15", startTime: 58.5, endTime: 63.0, text: "조건문은 'p이면 q이다' 형태의 명제입니다" },
-  { id: "cc16", startTime: 63.0, endTime: 67.5, text: "이것을 기호로 p → q 라고 씁니다" },
-  { id: "cc17", startTime: 67.5, endTime: 72.0, text: "여기서 p를 가정, q를 결론이라고 합니다" },
-  { id: "cc18", startTime: 72.0, endTime: 76.5, text: "조건문의 역, 이, 대우에 대해서도 알아야 합니다" },
-  { id: "cc19", startTime: 76.5, endTime: 81.0, text: "역은 q → p, 이는 ~p → ~q" },
-  { id: "cc20", startTime: 81.0, endTime: 85.0, text: "대우는 ~q → ~p 가 됩니다" },
-];
-
 export const MOCK_COURSE = {
   title: "강좌명 : 수학 논리학의 기초",
   currentLecture: "[2강] 명제의 정의",
