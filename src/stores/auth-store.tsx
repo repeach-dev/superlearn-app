@@ -41,7 +41,14 @@ const createCookieStorage = (cookieDomain: string) => {
     };
   }
 
-  const isLocal = window.location.hostname === "localhost";
+  const hostname = window.location.hostname;
+    // const isLocal = window.location.hostname === "localhost";
+  const isLocal =
+    hostname === "localhost" ||
+    hostname === "127.0.0.1" ||
+    hostname.startsWith("192.168.") ||
+    hostname.startsWith("10.") ||
+    hostname.startsWith("172.");
   let appliedDomain = cookieDomain;
 
   if (!isLocal && !window.location.host.includes("superlearn.kr")) {

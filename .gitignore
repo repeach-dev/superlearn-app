@@ -41,6 +41,8 @@ yarn-error.*
 # agents skills
 .agents/
 
+.claude/
+
 # generated native folders
 /ios
 /android

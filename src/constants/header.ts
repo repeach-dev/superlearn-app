@@ -1,9 +1,9 @@
 export const NAV_ITEMS = [
-  { label: "나의 강의실", href: "/(main)/classroom" },
-  { label: "나의 클립", href: "/(main)/clips" },
-  { label: "학습 자료실", href: "/(main)/resources" },
-  { label: "과제 제출", href: "/(main)/assignments" },
-  { label: "공지사항", href: "/(main)/notices" },
+  { label: "나의 강의실", href: "/classroom" },
+  { label: "나의 클립", href: "/clips" },
+  { label: "학습 자료실", href: "/resources" },
+  { label: "과제 제출", href: "/assignments" },
+  { label: "공지사항", href: "/notices" },
 ] as const;
 
 export const ICON = {

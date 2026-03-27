@@ -49,7 +49,7 @@ export default function Header() {
 
         <View className={navGroup({ platform: P })}>
           {NAV_ITEMS.map(({ label, href }) => {
-            const isActive = pathname === href.replace("/(tabs)", "");
+            const isActive = pathname === href.replace("/(main)", "");
             return (
               <Link key={href} href={href as `/${string}`} asChild>
                 <Pressable
