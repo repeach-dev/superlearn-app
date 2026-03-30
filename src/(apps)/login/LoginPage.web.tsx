@@ -30,16 +30,8 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await studentLogin({ email, password },
-        {
-          onSuccess(data, variables, context) {
-            setAccessToken(data.access_token);
-          },
-          onError(error, variables, context) {
-            setPasswordError("아이디 또는 비밀번호가 일치하지 않습니다.");
-          },
-        }
-      );
+      const response = await studentLogin({ email, password });
+      setAccessToken(response.access_token);
     } catch {
       setPasswordError("아이디 또는 비밀번호가 일치하지 않습니다.");
     }
