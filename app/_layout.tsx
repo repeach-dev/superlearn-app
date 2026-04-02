@@ -1,15 +1,18 @@
 import "../global.css";
 import { useEffect } from "react";
+import { View } from "react-native";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import MainLayout from "@/components/_layout";
 import { useAuthStore } from "@/stores/auth-store";
+import { useThemeStore } from "@/stores/theme-store";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const { accessToken } = useAuthStore();
+  const { theme } = useThemeStore();
   const router = useRouter();
 
   const [fontsLoaded] = useFonts({
@@ -43,13 +46,26 @@ export default function RootLayout() {
     }
   }, [fontsLoaded, accessToken, segments]);
 
+  // 웹: document.documentElement에 dark 클래스 적용
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, [theme]);
+
   if (!fontsLoaded) return null;
 
   return (
-    <MainLayout>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(main)" />
-      </Stack>
-    </MainLayout>
+    <View className="flex-1">
+      <MainLayout>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(main)" />
+        </Stack>
+      </MainLayout>
+    </View>
   );
 }

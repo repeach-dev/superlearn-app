@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,12 +7,14 @@ import {
   useWindowDimensions,
   Platform,
 } from "react-native";
+import ErrorModal from "@/components/ui/ErrorModal";
 import RepeachPlayer from "./RepeachPlayer";
 import CurriculumTab from "./CurriculumTab";
 import NoteTab from "./NoteTab";
 import BookmarkTab from "./BookmarkTab";
 import QnATab from "./QnATab";
 import SubtitleList from "./SubtitleList";
+import { usePlayerStore } from "@/stores/player-store";
 import {
   MOCK_COURSE,
   MOCK_LECTURES,
@@ -20,10 +22,8 @@ import {
   MOCK_QNA,
   MOCK_SUBTITLE_SECTIONS,
 } from "./mock-data";
+import { useGetStudentContentQuery, useGetSubtitleQuery, useGetSummaryQuery } from "@/queries/studnet-classroom/student-classroom.query";
 
-interface PlayerPageProps {
-  id: string;
-}
 
 // 큰 화면: 사이드바 탭 (자막 없음)
 const SIDEBAR_TABS = [
@@ -45,7 +45,25 @@ const SIDEBAR_MIN = 280;
 const SIDEBAR_MAX = 1800;
 const SIDEBAR_DEFAULT = 360;
 
-export default function PlayerPage({ id }: PlayerPageProps) {
+export default function PlayerPage() {
+  const { contentHash, userId, userPk,contentId, setContentHash } = usePlayerStore();
+
+  const { data: contentData, isLoading } = useGetStudentContentQuery(contentId);
+  // const { data: subtitleData } = useGetSubtitleQuery(contentId);
+  const { data: summaryData } = useGetSummaryQuery(contentId);
+
+  // API에서 videoHash를 가져오면 store에 저장
+  useEffect(() => {
+    const hash = contentData?.data?.myPurchasedContent?.video?.videoHash;
+    if (hash) {
+      const fullHash = hash + ".mp4";
+      if (fullHash !== contentHash) {
+        setContentHash(fullHash);
+      }
+    }
+  }, [contentData]);
+
+  const hasParams = !!(userId && userPk && contentId);
   const [activeTab, setActiveTab] = useState<TabKey>("curriculum");
   const [sidebarWidth, setSidebarWidth] = useState(SIDEBAR_DEFAULT);
   const [isResizing, setIsResizing] = useState(false);
@@ -137,7 +155,7 @@ export default function PlayerPage({ id }: PlayerPageProps) {
     >
       {/* 강좌명 */}
       <View className="border-b border-[#2a2a40] px-4 py-3">
-        <Text className="text-[14px] font-bold text-white">
+        <Text className="text-[14px] font-bold text-[#1a1a1a] dark:text-white">
           {MOCK_COURSE.title}
         </Text>
       </View>
@@ -171,6 +189,16 @@ export default function PlayerPage({ id }: PlayerPageProps) {
     </View>
   );
 
+  if (!hasParams) {
+    return (
+      <ErrorModal
+        visible
+        message="필요한 정보가 없습니다. 메인 화면으로 이동합니다."
+        redirectPath="/"
+      />
+    );
+  }
+
   return (
     <View className="flex-1 bg-[#0a0a1a]">
       <View style={{ flex: 1, flexDirection: isSidebarMode ? "row" : "column" }}>
@@ -178,13 +206,20 @@ export default function PlayerPage({ id }: PlayerPageProps) {
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           {/* 플레이어 (리사이즈 중 iframe 이벤트 차단용 오버레이 포함) */}
           <View className="relative">
-            <RepeachPlayer
-              contentId="efed5a3301ca62154c4d13d2c755950a7b3bb3493f888464c23f8048ab731c2d.mp4"
-              userId="test-user"
-              userPk="1"
-              classId="tt"
-              onTimeUpdate={(time) => setCurrentTime(time)}
-            />
+            {contentHash && userId && userPk ? (
+              <RepeachPlayer
+                contentHash={contentHash}
+                contentId={contentId!}
+                userId={userId}
+                userPk={userPk}
+                classId="cloud"
+                onTimeUpdate={(time) => setCurrentTime(time)}
+              />
+            ) : (
+              <View className="aspect-video bg-[#141425] items-center justify-center">
+                <Text className="text-[#666666] dark:text-[#949494]">영상 로딩 중...</Text>
+              </View>
+            )}
             {isResizing && (
               <View
                 className="absolute inset-0"
@@ -253,21 +288,21 @@ function PlayerInfo() {
     <View className="gap-3 border-b border-[#2a2a40] p-4 lg:p-5">
       <View className="flex-row items-start justify-between">
         <View className="flex-1 gap-2">
-          <Text className="text-[18px] font-bold text-white lg:text-[20px]">
+          <Text className="text-[18px] font-bold text-[#1a1a1a] dark:text-white lg:text-[20px]">
             {MOCK_COURSE.currentLecture}
           </Text>
-          <Text className="text-[13px] leading-5 text-[#bababa] lg:text-[14px]">
+          <Text className="text-[13px] leading-5 text-[#888888] dark:text-[#bababa] lg:text-[14px]">
             {MOCK_COURSE.description}
           </Text>
         </View>
         <View className="ml-4 items-center">
           <View className="h-[48px] w-[48px] items-center justify-center rounded-full border-2 border-[#2a2a40]">
-            <Text className="text-[14px] font-bold text-white">
+            <Text className="text-[14px] font-bold text-[#1a1a1a] dark:text-white">
               {MOCK_COURSE.progress}%
             </Text>
           </View>
           <Text className="mt-1 text-[11px] text-[#6b7280]">학습 진도율</Text>
-          <Text className="text-[11px] text-white">
+          <Text className="text-[11px] text-[#1a1a1a] dark:text-white">
             {MOCK_COURSE.currentTime} / {MOCK_COURSE.totalTime}
           </Text>
         </View>
@@ -276,7 +311,7 @@ function PlayerInfo() {
         <View className="rounded border border-[#2a2a40] px-2 py-1">
           <Text className="text-[12px] text-[#6b7280]">학습 진도</Text>
         </View>
-        <Text className="text-[12px] text-[#bababa]">
+        <Text className="text-[12px] text-[#888888] dark:text-[#bababa]">
           진도율 80% 이상 시 활성화 (현재 {MOCK_COURSE.progress}%)
         </Text>
       </View>

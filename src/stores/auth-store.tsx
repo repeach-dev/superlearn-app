@@ -151,6 +151,7 @@ export const useAuthStore = create<AuthStoreState>()(
         return initialState as AuthStoreState;
       },
       storage: createJSONStorage(() =>
+        // createCookieStorage(process.env.NEXT_PUBLIC_COOKIE_DOMAIN || "localhost")
         createCookieStorage("https://leadwin.repeach.kr")
       ),
       partialize,

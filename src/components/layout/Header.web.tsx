@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { View, Text, Pressable, Image, StyleProp, ViewStyle, Button } from "react-native";
-import { Link, usePathname } from "expo-router";
+import { Link, router, usePathname } from "expo-router";
 import { MoonIcon, SettingsIcon, UserIcon, McBellRingingLineIcon } from "@/components/icons";
 import { isElectron } from "@/utils/platform";
 import { NAV_ITEMS, ICON, LOGO } from "@/constants/header";
 import axios from "@/api/default-client";
+import { usePlayerStore } from "@/stores/player-store";
+import ErrorModal from "@/components/ui/ErrorModal";
 import {
   headerContainer,
   headerLeftGroup,
@@ -20,6 +23,8 @@ import {
 import { useAuthStore } from "@/stores/auth-store";
 import { useStudentLoginMutation } from "@/queries/auth/auth.query";
 import { useAuthHooks } from "@/hooks/use-auth-hooks";
+import { useMyStore } from "@/stores/my.store";
+import { useThemeStore } from "@/stores/theme-store";
 
 
 const P = isElectron ? "electron" : "web";
@@ -33,7 +38,10 @@ const noDragStyle = isElectron
 export default function Header() {
   const pathname = usePathname();
   const { authLogout } = useAuthHooks();
-
+  const { getMyInfo } = useMyStore();
+  const myInfo = getMyInfo();
+  const [showLoginError, setShowLoginError] = useState(false);
+  const { theme, toggleTheme } = useThemeStore();
   return (
     <View className={headerContainer({ platform: P })} style={dragStyle}>
       <View className={headerLeftGroup({ platform: P })} style={noDragStyle}>
@@ -63,6 +71,30 @@ export default function Header() {
               </Link>
             );
           })}
+          {/* 플레이어 테스트용 */}
+          <Pressable
+            onPress={() => {
+              if (!myInfo?._id || !myInfo?.email) {
+                setShowLoginError(true);
+                return;
+              }
+              usePlayerStore.getState().setPlayerParams({
+                contentHash: "135b5aaf012bd123aec76ce8c6d4b60aede31593fbd29dad603d715462a6625b" + ".mp4",
+                userId: myInfo.email,
+                userPk: myInfo._id,
+                packageProductId: "13",
+                courseId: "12",
+                contentId: "",
+              });
+              router.push("/player");
+            }}
+            className={navItem({ active: pathname.includes("/player"), platform: P })}
+            style={{ borderCurve: "continuous" }}
+            accessibilityRole="link"
+            aria-label={"플레이어"}
+          >
+            <Text className={navText({ active: pathname.includes("/player"), platform: P })}>{"플레이어"}</Text>
+          </Pressable>
         </View>
       </View>
 
@@ -72,8 +104,9 @@ export default function Header() {
           aria-label="다크모드 전환"
           className={iconButton({ platform: P })}
           style={{ borderCurve: "continuous" }}
+          onPress={toggleTheme}
         >
-          <MoonIcon width={ICON.size[P]} height={ICON.size[P]} color={ICON.color} />
+          <Text>{theme === "dark" ? "☀️" : "🌙"}</Text>
         </Pressable>
 
         <Pressable
@@ -112,6 +145,12 @@ export default function Header() {
           <Text className={logoutText({ platform: P })} onPress={authLogout}>로그아웃</Text>
         </Pressable>
       </View>
+
+      <ErrorModal
+        visible={showLoginError}
+        message="로그인이 필요한 서비스입니다."
+        redirectPath="/login"
+      />
     </View>
   );
 }

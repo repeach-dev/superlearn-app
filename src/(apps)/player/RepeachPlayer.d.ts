@@ -1,6 +1,7 @@
 import { ComponentType } from "react";
 
 interface RepeachPlayerProps {
+  contentHash: string;
   contentId: string;
   userId: string;
   userPk: string;

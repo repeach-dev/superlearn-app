@@ -26,8 +26,8 @@ export default function CurriculumTab({ lectures, onSelect }: CurriculumTabProps
             <Text
               className={`text-[14px] ${
                 lecture.isActive
-                  ? "font-bold text-white"
-                  : "font-normal text-[#e6e7eb]"
+                  ? "font-bold text-[#1a1a1a] dark:text-white"
+                  : "font-normal text-[#333333] dark:text-[#e6e7eb]"
               }`}
             >
               {lecture.title}

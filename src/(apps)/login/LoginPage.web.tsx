@@ -38,7 +38,7 @@ export default function LoginPage() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-[#090909] px-4 sm:px-6">
+    <View className="flex-1 items-center justify-center bg-[#f0f0f0] dark:bg-[#090909] px-4 sm:px-6">
       {/* 로고 + 부제 */}
       <View className="mb-8 items-center gap-3 lg:mb-10">
         <View className="flex-row items-center gap-3 lg:gap-5">
@@ -61,19 +61,19 @@ export default function LoginPage() {
       </View>
 
       {/* 로그인 카드 */}
-      <View className="w-full max-w-[472px] rounded-xl bg-[#222] p-6 lg:p-10">
+      <View className="w-full max-w-[472px] rounded-xl bg-white dark:bg-[#222] p-6 lg:p-10">
         <View className="items-center gap-5 lg:gap-7">
           {/* 제목 */}
-          <Text className="font-bold text-[20px] text-white lg:text-[22px]">로그인</Text>
+          <Text className="font-bold text-[20px] text-[#1a1a1a] dark:text-white lg:text-[22px]">로그인</Text>
 
           {/* 입력 영역 */}
           <View className="w-full gap-1">
             {/* 이메일 */}
             <View className="w-full gap-2.5">
-              <Text className="font-semibold text-[14px] text-white">이메일</Text>
+              <Text className="font-semibold text-[14px] text-[#1a1a1a] dark:text-white">이메일</Text>
               <View>
                 <TextInput
-                  className="h-[42px] w-full rounded bg-[#1c1c1c] px-3 font-sans text-[16px] text-white"
+                  className="h-[42px] w-full rounded bg-white dark:bg-[#1c1c1c] px-3 font-sans text-[16px] text-[#1a1a1a] dark:text-white"
                   placeholder="아이디 혹은 이메일 주소를 입력해주세요."
                   placeholderTextColor="#8e8e8e"
                   value={email}
@@ -94,11 +94,11 @@ export default function LoginPage() {
 
             {/* 비밀번호 */}
             <View className="w-full gap-2.5">
-              <Text className="font-semibold text-[14px] text-white">비밀번호</Text>
+              <Text className="font-semibold text-[14px] text-[#1a1a1a] dark:text-white">비밀번호</Text>
               <View>
-                <View className="h-[42px] w-full flex-row items-center rounded bg-[#1c1c1c] px-3">
+                <View className="h-[42px] w-full flex-row items-center rounded bg-white dark:bg-[#1c1c1c] px-3">
                   <TextInput
-                    className="flex-1 font-sans text-[16px] text-white"
+                    className="flex-1 font-sans text-[16px] text-[#1a1a1a] dark:text-white"
                     placeholder="비밀번호를 입력해주세요."
                     placeholderTextColor="#8e8e8e"
                     value={password}
@@ -130,11 +130,11 @@ export default function LoginPage() {
           {/* 로그인 버튼 */}
           <View className="w-full gap-3">
             <Pressable
-              className="h-[44px] w-full items-center justify-center rounded-lg bg-[#ff0a0a]"
+              className="h-[44px] w-full items-center justify-center rounded-lg bg-accent-dark"
               onPress={handleLogin}
               disabled={isPending}
             >
-              <Text className="font-semibold text-[16px] text-white">
+              <Text className="font-semibold text-[16px] text-[#1a1a1a] dark:text-white">
                 {isPending ? "로그인 중..." : "로그인"}
               </Text>
             </Pressable>
@@ -147,10 +147,10 @@ export default function LoginPage() {
               >
                 <View
                   className={`h-[18px] w-[18px] rounded-sm border border-[rgba(221,221,221,0.87)] ${
-                    saveId ? "bg-[#ff0a0a]" : "bg-[#3b3b3b]"
+                    saveId ? "bg-accent-dark" : "bg-[#3b3b3b]"
                   }`}
                 />
-                <Text className="font-medium text-[14px] text-[#949494]">
+                <Text className="font-medium text-[14px] text-[#666666] dark:text-[#949494]">
                   아이디 저장
                 </Text>
               </Pressable>
@@ -158,15 +158,15 @@ export default function LoginPage() {
               <View className="flex-row items-center gap-2">
                 <Link href="/" asChild>
                   <Pressable>
-                    <Text className="font-medium text-[14px] text-[#949494]">
+                    <Text className="font-medium text-[14px] text-[#666666] dark:text-[#949494]">
                       회원가입
                     </Text>
                   </Pressable>
                 </Link>
-                <Text className="font-medium text-[14px] text-[#949494]">/</Text>
+                <Text className="font-medium text-[14px] text-[#666666] dark:text-[#949494]">/</Text>
                 <Link href="/" asChild>
                   <Pressable>
-                    <Text className="font-medium text-[14px] text-[#949494]">
+                    <Text className="font-medium text-[14px] text-[#666666] dark:text-[#949494]">
                       비밀번호 찾기
                     </Text>
                   </Pressable>

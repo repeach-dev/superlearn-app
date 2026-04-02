@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants";
 // --- Header layout variants ---
 
 export const headerContainer = tv({
-  base: "z-10 flex-row items-center justify-between border-b border-slate-200 bg-white",
+  base: "z-10 flex-row items-center justify-between border-b border-[#e5e5e5] bg-white dark:border-[#353535] dark:bg-black",
   variants: {
     platform: {
       web: "px-4 py-3 lg:px-6 lg:py-4",
@@ -47,7 +47,7 @@ export const iconGroup = tv({
 });
 
 export const profileButton = tv({
-  base: "items-center justify-center bg-slate-50",
+  base: "items-center justify-center bg-[#f0f0f0] dark:bg-[rgba(81,81,81,0.3)]",
   variants: {
     platform: {
       web: "ml-0.5 size-9 rounded-xl lg:ml-1 lg:size-10 lg:rounded-2xl",
@@ -60,7 +60,7 @@ export const profileButton = tv({
 // --- Breadcrumb variants ---
 
 export const breadcrumbContainer = tv({
-  base: "w-full flex-row items-center border-b border-slate-100 bg-slate-50",
+  base: "w-full flex-row items-center border-b border-[#e5e5e5] bg-[#f5f5f5] dark:border-[#353535] dark:bg-[#222]",
   variants: {
     platform: {
       web: "gap-2 px-4 py-2 lg:px-6 lg:py-2.5",
@@ -82,7 +82,7 @@ export const breadcrumbInner = tv({
 });
 
 export const breadcrumbText = tv({
-  base: "font-medium text-slate-400",
+  base: "font-medium text-[#666666] dark:text-[#949494]",
   variants: {
     platform: {
       web: "text-xs lg:text-sm",
@@ -93,7 +93,7 @@ export const breadcrumbText = tv({
 });
 
 export const breadcrumbSeparator = tv({
-  base: "text-slate-300",
+  base: "text-[#888888] dark:text-[#bababa]",
   variants: {
     platform: {
       web: "text-xs lg:text-sm",
@@ -104,7 +104,7 @@ export const breadcrumbSeparator = tv({
 });
 
 export const breadcrumbCurrent = tv({
-  base: "font-semibold text-slate-700",
+  base: "font-semibold text-[#1a1a1a] dark:text-white",
   variants: {
     platform: {
       web: "text-xs lg:text-sm",
@@ -120,8 +120,8 @@ export const navItem = tv({
   base: "rounded-xl transition-colors",
   variants: {
     active: {
-      true: "bg-nav-active",
-      false: "bg-transparent hover:bg-slate-50",
+      true: "bg-nav-active dark:bg-[rgba(255,255,255,0.1)]",
+      false: "bg-transparent hover:bg-[#f0f0f0] dark:hover:bg-[rgba(255,255,255,0.05)]",
     },
     platform: {
       web: "px-4 py-2",
@@ -137,8 +137,8 @@ export const navItem = tv({
 export const navText = tv({
   variants: {
     active: {
-      true: "font-bold text-nav-active-text",
-      false: "font-semibold text-nav-inactive-text",
+      true: "font-bold text-nav-active-text dark:text-white",
+      false: "font-semibold text-[#333333] dark:text-[#e6e7eb]",
     },
     platform: {
       web: "text-nav-web",
@@ -155,7 +155,7 @@ export const iconButton = tv({
   base: "items-center justify-center",
   variants: {
     platform: {
-      web: "size-9 rounded-xl bg-slate-50 lg:size-10 lg:rounded-2xl",
+      web: "size-9 rounded-xl bg-[#f0f0f0] dark:bg-[rgba(81,81,81,0.3)] lg:size-10 lg:rounded-2xl",
       electron: "size-6",
     },
   },
@@ -165,7 +165,7 @@ export const iconButton = tv({
 });
 
 export const badge = tv({
-  base: "absolute -right-1 -top-1 items-center justify-center rounded-full border-2 border-white bg-red-500",
+  base: "absolute -right-1 -top-1 items-center justify-center rounded-full border-2 border-white dark:border-black bg-[#ff5c5c]",
   variants: {
     platform: {
       web: "size-4",
@@ -191,7 +191,7 @@ export const badgeText = tv({
 });
 
 export const logoutText = tv({
-  base: "font-semibold text-slate-500",
+  base: "font-semibold text-[#666666] dark:text-[#949494]",
   variants: {
     platform: {
       web: "text-xs lg:text-sm",

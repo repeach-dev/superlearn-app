@@ -39,7 +39,7 @@ export default function BookmarkTab({
                 {bookmark.time}
               </Text>
             </View>
-            <Text className="flex-1 text-[16px] font-semibold text-white">
+            <Text className="flex-1 text-[16px] font-semibold text-[#1a1a1a] dark:text-white">
               {bookmark.label}
             </Text>
           </Pressable>

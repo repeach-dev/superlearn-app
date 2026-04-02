@@ -16,14 +16,14 @@ export default function QnATab({ items }: QnATabProps) {
           >
             {/* 질문 헤더 */}
             <View className="flex-row items-center justify-between">
-              <Text className="text-[16px] font-bold text-white">
+              <Text className="text-[16px] font-bold text-[#1a1a1a] dark:text-white">
                 {item.author}
               </Text>
               <Text className="text-[13px] text-[#6b7280]">{item.date}</Text>
             </View>
 
             {/* 질문 내용 */}
-            <Text className="text-[15px] leading-6 text-[#e6e7eb]">
+            <Text className="text-[15px] leading-6 text-[#333333] dark:text-[#e6e7eb]">
               {item.question}
             </Text>
 
@@ -33,7 +33,7 @@ export default function QnATab({ items }: QnATabProps) {
                 <Text className="text-[13px] font-bold text-[#ff5b5c]">
                   {item.answer.label}
                 </Text>
-                <Text className="text-[14px] leading-5 text-[#bababa]">
+                <Text className="text-[14px] leading-5 text-[#888888] dark:text-[#bababa]">
                   {item.answer.content}
                 </Text>
               </View>

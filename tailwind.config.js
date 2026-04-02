@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: 'class',
     content: ["./App.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
     presets: [require("nativewind/preset")],
     theme: {
@@ -16,6 +17,14 @@ module.exports = {
                 black: ['Pretendard-Black'],
             },
             colors: {
+                // 고정 색상 (모드 무관)
+                accent: {
+                    DEFAULT: '#ff5c5c',
+                    dark: '#ff0a0a',
+                },
+                error: '#ff5b5c',
+                brand: '#ff3d3d',
+                // 기존 색상 유지
                 icon: {
                     DEFAULT: '#64748b',
                 },

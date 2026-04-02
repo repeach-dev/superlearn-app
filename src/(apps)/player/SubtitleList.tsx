@@ -47,10 +47,10 @@ export default function SubtitleList({
         <View key={section.id} className="border-b border-[#1a1a2e]">
           {/* 섹션 제목 + 요약 */}
           <View className="gap-1 px-4 pt-4 pb-2">
-            <Text className="text-[15px] font-bold text-white">
+            <Text className="text-[15px] font-bold text-[#1a1a1a] dark:text-white">
               {section.title}
             </Text>
-            <Text className="text-[13px] leading-5 text-[#bababa]">
+            <Text className="text-[13px] leading-5 text-[#888888] dark:text-[#bababa]">
               {section.summary}
             </Text>
           </View>
@@ -80,7 +80,7 @@ export default function SubtitleList({
                   </Text>
                   <Text
                     className={`flex-1 text-[14px] leading-5 ${
-                      isActive ? "text-white" : "text-[#e6e7eb]"
+                      isActive ? "text-[#1a1a1a] dark:text-white" : "text-[#333333] dark:text-[#e6e7eb]"
                     }`}
                   >
                     {subtitle.text}
@@ -94,7 +94,7 @@ export default function SubtitleList({
                       onPress={() => onSubtitlePress?.(subtitle.startTime)}
                       className="rounded-full bg-[#ff3b3b] px-3 py-1"
                     >
-                      <Text className="text-[11px] font-semibold text-white">
+                      <Text className="text-[11px] font-semibold text-[#1a1a1a] dark:text-white">
                         자막보기
                       </Text>
                     </Pressable>
