@@ -35,9 +35,9 @@ export const useGetStudentContentQuery = (contentId: string | null) => {
   });
 };
 
-/** 2순위: 자막 정보 (vtt 파일 — 플레이어 내부에서 사용) */
+/** 2순위: 자막 정보 (vtt 파일 텍스트 — 플레이어 내부에서 사용) */
 export const useGetSubtitleQuery = (contentId: string | null) => {
-  return useQuery<SubtitleResponse>({
+  return useQuery<string>({
     queryKey: [studentClassroomQueryKeys.SUBTITLE, contentId],
     queryFn: () => subtitleBycontentIdApi(contentId),
     enabled: !!contentId,

@@ -53,10 +53,12 @@ export const getStudentContentApi = async (contentId: string|null): Promise<Stud
   return data;
 }
 
-export const subtitleBycontentIdApi = async (contentId: string|null): Promise<SubtitleResponse> => {
+export const subtitleBycontentIdApi = async (contentId: string|null): Promise<string> => {
     if(!contentId) throw new Error("contentId is required");
     const url = `/student-classroom/subtitles/${contentId}/vtt?language=ko`;
-    const response = await defaultClient.get<SubtitleResponse>(url);
+    const response = await defaultClient.get<string>(url, {
+      responseType: "text" as any,
+    });
 
   return response.data;
 }
